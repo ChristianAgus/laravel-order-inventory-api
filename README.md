@@ -767,17 +767,15 @@ Database juga menggunakan constraint seperti:
 
 For a separate testing database, configure .env.testing:
 
+```bash
 APP_ENV=testing
 DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
 DB_DATABASE=order_inventory_test
-DB_USERNAME=root
-DB_PASSWORD=
+```
 
+```bash
 php artisan migrate --env=testing
-
-php artisan test
+```
 
 ```bash
 php artisan test
