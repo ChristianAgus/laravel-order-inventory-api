@@ -7,7 +7,7 @@ Project ini dibuat sebagai technical test dengan fokus pada business logic check
 ## Tech Stack
 
 * PHP 8.3+
-* Laravel 12
+* Laravel 13
 * Laravel Sanctum
 * MySQL
 * PHPUnit
