@@ -48,7 +48,7 @@ Pastikan environment sudah memiliki:
 * PHP 8.3 atau lebih baru
 * Composer
 * MySQL
-* Laravel 12 compatible environment
+* Laravel 13 compatible environment
 
 Cek versi:
 
