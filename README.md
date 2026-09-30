@@ -810,24 +810,41 @@ Test menggunakan database testing dan `RefreshDatabase` agar setiap test mendapa
 
 # Postman
 
-Postman collection dapat digunakan untuk melakukan manual API testing terhadap development server.
-
-Import collection dari repository jika tersedia pada folder:
+Collection dan environment tersedia di folder `docs/postman/`:
 
 ```text
-docs/postman/
+docs/postman/Laravel Order Inventory - Local.postman_environment.json
+docs/postman/Laravel Order Inventory API.postman_collection.json
 ```
 
-Base URL:
+## Cara Pakai
 
-```text
-http://127.0.0.1:8000/api
-```
+1. Jalankan `php artisan migrate:fresh --seed` lalu `php artisan serve`.
+2. Import kedua file di Postman (Import → drag file).
+3. Pilih environment **Laravel Order Inventory API - Local** di pojok kanan atas.
+4. Sesuaikan `base_url` jika server tidak berjalan di `http://127.0.0.1:8000`.
+5. Jalankan **1. Auth → [ADMIN] Login** dan **[CUSTOMER] Login**. Token tersimpan otomatis ke environment.
 
-Untuk endpoint protected, gunakan:
+## Struktur Collection
 
-```http
-Authorization: Bearer YOUR_TOKEN
+| Folder | Isi |
+| --- | --- |
+| 1. Auth | Register, login, me, logout |
+| 2. Products | CRUD admin, list/detail admin dan customer, negative test role |
+| 3. Coupons | CRUD admin, negative test role |
+| 4. Orders & Checkout | Checkout, cancel, pay, negative test validasi |
+
+Label pada nama request:
+
+* `[ADMIN]` memakai `{{admin_token}}`
+* `[CUSTOMER]` memakai `{{customer_token}}`
+* `[PUBLIC]` / `[NO TOKEN]` tanpa token
+* Akhiran `-> 401`, `-> 403`, `-> 422` menandakan negative test
+
+## Urutan Testing
+
+Auth → Create Product → Create Coupon → Checkout → Pay → Cancel.
+Delete product dan coupon dijalankan paling akhir.tion: Bearer YOUR_TOKEN
 ```
 
 ---
